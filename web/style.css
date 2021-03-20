@@ -1,0 +1,11 @@
+.container {
+    width: 90vw;
+    min-height: 40vw;
+    margin: 5rem auto;
+    padding: 2px;
+    border: 1px solid hsl(0, 0%, 60%);
+    transition: all 1s linear;
+}
+.container:hover {
+    border: 1px solid hsl(0, 0%, 25%);
+}
