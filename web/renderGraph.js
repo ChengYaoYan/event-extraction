@@ -2,6 +2,7 @@ function renderGraph(payload) {
     let myChart = echarts.init(document.getElementById("main"));
 
     let { event, reasons, results } = payload;
+    
     // original node position
     let xOriginal = 500,
         yOriginal = 500;
