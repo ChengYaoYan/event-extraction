@@ -5,15 +5,22 @@ const searchBtn = document.getElementById("search-btn");
 const handleSearchEvent = () => {
     const inputBox = document.getElementById("input-box");
     const event = inputBox.value;
-    // api fetch event relative reasons and results
-    const reasons = ["reason1", "reason2", "reason3"];
-    const results = ["result1", "result2", "result3"];
-    const payload = {
-        event,
-        reasons,
-        results
-    };
-    renderGraph(payload);
+    
+    fetch(`http://localhost:3000/search/${event}`)
+        .then(response => response.json())
+        .then(data => {
+            let reasons = data.data.filter(item => item.result == event)
+                                    .map(item => item.reason);
+            let results = data.data.filter(item => item.reason == event)
+                                    .map(item => item.result);
+
+            let payload = {
+                event,
+                reasons,
+                results,
+            }
+            renderGraph(payload);
+        });
 };
 
 searchBtn.addEventListener("click", handleSearchEvent);
